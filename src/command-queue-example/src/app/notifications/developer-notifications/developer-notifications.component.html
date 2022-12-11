@@ -1,0 +1,15 @@
+
+<div class="container">
+<ul>
+<li *ngFor='let notification of notifications' [class.danger]="notification.danger">
+ <div class="notification" >
+ {{notification.message}}
+ </div>
+ <span class="material-symbols-outlined"
+ (click)="discardNotification(notification.id)"
+ >
+ close
+ </span>
+</li>
+</ul>
+</div>

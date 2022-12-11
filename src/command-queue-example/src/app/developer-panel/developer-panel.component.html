@@ -1,0 +1,18 @@
+
+<div class="card">
+  <div class="item">
+    <h2>Commands in Queue</h2>
+    <p>{{ commandsInQueue }}</p>
+  </div>
+  <div class="item">
+    <h2>Local Model Version</h2>
+    <p>{{localModelVersion}}</p>
+  </div>
+  <div class="item">
+    <h2>Server Model Version</h2>
+    <p>{{serverModelVersion}}</p>
+  </div>
+  <div class="item">
+  <button (click)="incrementServerModelVersion()">Increment Server Model Version</button>
+  </div>
+</div>
