@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CommandQueueDataManagerService } from '@jcachay/command-queue';
 import { ServerDataService } from '../mock-data-access/server-data-service';
 import {AppConcurrencyToken} from "../command-queue-dm-parts/app-concurrency-token";
+import {AppDataManagerService} from "../command-queue-dm-parts/app-data-manager.service";
 
 @Component({
   selector: 'app-developer-panel',
@@ -10,12 +10,12 @@ import {AppConcurrencyToken} from "../command-queue-dm-parts/app-concurrency-tok
 })
 export class DeveloperPanelComponent  {
 
-  constructor(private dm : CommandQueueDataManagerService,
+  constructor(private dm : AppDataManagerService,
     private ds : ServerDataService) { }
 
   get commandsInQueue():number
   {
-    return this.dm.commandsInQueue;
+    return this.dm.pendingCommands.length;
   }
 
   get serverModelVersion():number
@@ -33,6 +33,11 @@ export class DeveloperPanelComponent  {
   incrementServerModelVersion():void
   {
     this.ds.incrementModelVersion();
+  }
+
+  cancelCommands()
+  {
+    this.dm.cancelAllCommands();
   }
 
 }

@@ -3,8 +3,9 @@ import {AddPetCommand} from "./command-queue-dm-parts/commands/add-pet-command";
 import {PetsViewModel} from "./command-queue-dm-parts/pets-view-model";
 import { v4 as uuid } from 'uuid';
 import {Subscription} from "rxjs";
-import {CommandQueueDataManagerService, ConcurrencyVersionMismatchError} from "@jcachay/command-queue";
+import {ConcurrencyVersionMismatchError} from "@jcachay/command-queue";
 import {DeveloperNotificationsService} from "./notifications/developer-notifications.service";
+import {AppDataManagerService} from "./command-queue-dm-parts/app-data-manager.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +13,7 @@ import {DeveloperNotificationsService} from "./notifications/developer-notificat
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor(
-    private dm: CommandQueueDataManagerService,
+    private dm: AppDataManagerService,
     private developerNotifications: DeveloperNotificationsService
   ) {
   }
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dm.readViewModel().subscribe();
     this.subscriptions = new Subscription();
-    this.subscriptions.add(this.dm.onViewModelChanged
+    this.subscriptions.add(this.dm.onViewModelUpdated
       .subscribe(() => {
         this.developerNotifications.notify("View model changed");
       }));

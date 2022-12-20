@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+
 import {CommandQueueCommand, CommandQueueDataService, ConcurrencyToken} from "@jcachay/command-queue";
 import {map, Observable} from "rxjs";
 import { ServerDataService } from "../mock-data-access/server-data-service";
@@ -10,9 +10,7 @@ import {AppConcurrencyToken} from "./app-concurrency-token";
 * the server.
 */
 
-@Injectable({
-  providedIn:'root'
-})
+
 export class PetsDataService
 extends CommandQueueDataService
 {

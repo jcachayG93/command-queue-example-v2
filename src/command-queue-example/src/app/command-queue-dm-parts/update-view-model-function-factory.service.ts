@@ -1,19 +1,15 @@
 import { Injectable } from "@angular/core";
-import { CommandQueueCommand, CommandQueueUpdateViewModelFunctionFactoryService, IUpdateViewModelFunction } from "@jcachay/command-queue";
+import {
+  CommandQueueCommand,
+  CommandQueueUpdateViewModelFunctionFactory,
+  IUpdateViewModelFunction
+} from "@jcachay/command-queue";
 import { AddPetCommand } from "./commands/add-pet-command";
 import { PetsViewModel } from "./pets-view-model";
 
 
-/*
-* The command-queue library uses this class to create a 
-* function to apply the command to the ViewModel, updating its state
-*/
-
-@Injectable({
-  providedIn:'root'
-})
-export class UpdateViewModelFunctionFactoryService
-extends CommandQueueUpdateViewModelFunctionFactoryService
+export class UpdateViewModelFunctionFactory
+extends CommandQueueUpdateViewModelFunctionFactory
 {
 
 create(cmd: CommandQueueCommand): IUpdateViewModelFunction {
