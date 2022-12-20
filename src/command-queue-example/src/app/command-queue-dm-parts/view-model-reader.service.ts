@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import {
   CommandQueueReaderResponseDto,
   CommandQueueViewModel,
-  CommandQueueViewModelReaderService
+  CommandQueueViewModelReader
 } from "@jcachay/command-queue";
 import {map, Observable} from "rxjs";
 import { ServerDataService } from "../mock-data-access/server-data-service";
@@ -16,8 +16,8 @@ import {AppConcurrencyToken} from "./app-concurrency-token";
 @Injectable({
   providedIn:'root'
 })
-export class ViewModelReaderService
-extends CommandQueueViewModelReaderService
+export class ViewModelReader
+extends CommandQueueViewModelReader
 {
 
   constructor(private ds : ServerDataService)
